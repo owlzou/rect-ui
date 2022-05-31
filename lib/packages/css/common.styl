@@ -1,0 +1,49 @@
+@import './color.css'
+@import './variables.styl'
+
+/* --------------------------------- COMMON --------------------------------- */
+:root {
+    // 变量
+    --color-bg #fff
+    --color-shadow var(--color-gray-8)
+}
+
+* {
+    box-sizing content-box
+}
+
+body {
+    color var(--color-gray-9)
+    font-family 'Microsoft YaHei', 'Source Han Sans SC', 'Source Han Sans CN', 'noto sans', 'Wenquanyi Micro Hei', STHeiti, SimHei, sans
+    font-size 16px
+    line-height 1.4
+}
+
+.r-svg-button {
+    height 24px
+
+    &:hover {
+        cursor pointer
+    }
+}
+
+.r-inline {
+    display flex-inline
+}
+
+.r-show {
+    display block
+}
+
+/* ---------------------------------- COLOR --------------------------------- */
+for $color in $colors {
+    .r-modal__title {
+        &.r-{$color} {
+            background get-color($color, 2)
+        }
+    }
+
+    .r-bg-{$color} {
+        background get-color($color, 5)
+    }
+}

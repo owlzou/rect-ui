@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "target": "ES2015",
+    "moduleResolution": "node",
+    "jsx": "preserve"
+  },
+  "include": ["packages/**/**/*"],
+  "exclude": ["packages/components/**/demo", "packages/components/**/tests"],
+}

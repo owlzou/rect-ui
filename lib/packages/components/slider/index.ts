@@ -1,0 +1,1 @@
+export { default as RSlider } from './index.vue'

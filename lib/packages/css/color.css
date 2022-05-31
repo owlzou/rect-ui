@@ -1,0 +1,169 @@
+:root {
+  /* light */
+  --color-light-0: #ffffff;
+  --color-light-1: #fcfcfc;
+  --color-light-2: #f7f7f7;
+  --color-light-3: #efefef;
+  --color-light-4: #e3e3e3;
+  --color-light-5: #cfcfcf;
+  --color-light-6: #b0b0b0;
+  --color-light-7: #818181;
+  --color-light-8: #464646;
+  --color-light-9: #030303;
+
+  /* gray */
+  --color-gray-0: #f8faf9;
+  --color-gray-1: #eaeeee;
+  --color-gray-2: #dae2e1;
+  --color-gray-3: #c9d5d4;
+  --color-gray-4: #b7c7c5;
+  --color-gray-5: #a2b7b4;
+  --color-gray-6: #91a4a1;
+  --color-gray-7: #7c8c8a;
+  --color-gray-8: #626f6d;
+  --color-gray-9: #394140;
+
+  /* blue */
+  --color-blue-0: #f2faff;
+  --color-blue-1: #d0e9fe;
+  --color-blue-2: #afd5fd;
+  --color-blue-3: #93c1fb;
+  --color-blue-4: #7caef8;
+  --color-blue-5: #699df2;
+  --color-blue-6: #598ce7;
+  --color-blue-7: #4876cc;
+  --color-blue-8: #325497;
+  --color-blue-9: #213969;
+
+  /* indigo */
+  --color-indigo-0: #f5f8ff;
+  --color-indigo-1: #dae4fe;
+  --color-indigo-2: #c0ccfe;
+  --color-indigo-3: #aab5fc;
+  --color-indigo-4: #97a0fa;
+  --color-indigo-5: #888ff6;
+  --color-indigo-6: #7b7fed;
+  --color-indigo-7: #6a6cd9;
+  --color-indigo-8: #5455b2;
+  --color-indigo-9: #42428f;
+
+  /* violet */
+  --color-violet-0: #f7f4ff;
+  --color-violet-1: #e1d2fe;
+  --color-violet-2: #cdb2fd;
+  --color-violet-3: #bc95fb;
+  --color-violet-4: #ae7ef7;
+  --color-violet-5: #a16cf1;
+  --color-violet-6: #945be5;
+  --color-violet-7: #7d49c7;
+  --color-violet-8: #57318d;
+  --color-violet-9: #371e59;
+
+  /* pink */
+  --color-pink-0: #fff2fd;
+  --color-pink-1: #fecef4;
+  --color-pink-2: #fdaae7;
+  --color-pink-3: #fb8cd7;
+  --color-pink-4: #f973c8;
+  --color-pink-5: #f360b9;
+  --color-pink-6: #e950a9;
+  --color-pink-7: #d04091;
+  --color-pink-8: #a02d6d;
+  --color-pink-9: #75204f;
+
+  /* red */
+  --color-red-0: #fff2f2;
+  --color-red-1: #fecdce;
+  --color-red-2: #fdaaab;
+  --color-red-3: #fa8b8c;
+  --color-red-4: #f77273;
+  --color-red-5: #f05e5f;
+  --color-red-6: #e34e4e;
+  --color-red-7: #c23b3c;
+  --color-red-8: #842525;
+  --color-red-9: #4d1515;
+
+  /* orange */
+  --color-orange-0: #fff9ee;
+  --color-orange-1: #feccc1;
+  --color-orange-2: #feb9a6;
+  --color-orange-3: #fda98b;
+  --color-orange-4: #fc9b71;
+  --color-orange-5: #f98846;
+  --color-orange-6: #f47c26;
+  --color-orange-7: #e9720f;
+  --color-orange-8: #ce6301;
+  --color-orange-9: #8d4600;
+
+  /* yellow */
+  --color-yellow-0: #fffdee;
+  --color-yellow-1: #fdeb90;
+  --color-yellow-2: #fad645;
+  --color-yellow-3: #f5c012;
+  --color-yellow-4: #eeaf00;
+  --color-yellow-5: #e2a000;
+  --color-yellow-6: #cf8e00;
+  --color-yellow-7: #b37900;
+  --color-yellow-8: #8f6000;
+  --color-yellow-9: #664400;
+
+  /* lime */
+  --color-lime-0: #fcfff2;
+  --color-lime-1: #f1febf;
+  --color-lime-2: #e5fd8e;
+  --color-lime-3: #d9fa64;
+  --color-lime-4: #cef642;
+  --color-lime-5: #c2ef29;
+  --color-lime-6: #b2e116;
+  --color-lime-7: #94be0a;
+  --color-lime-8: #5f7b02;
+  --color-lime-9: #314000;
+
+  /* green */
+  --color-green-0: #f7fff2;
+  --color-green-1: #dafdcb;
+  --color-green-2: #bdfaa5;
+  --color-green-3: #a1f584;
+  --color-green-4: #88ed69;
+  --color-green-5: #71e053;
+  --color-green-6: #5ccc40;
+  --color-green-7: #48ae30;
+  --color-green-8: #358722;
+  --color-green-9: #235c16;
+
+  /* teal */
+  --color-teal-0: #f2fff5;
+  --color-teal-1: #c6fdd8;
+  --color-teal-2: #9bf9c3;
+  --color-teal-3: #76f4b5;
+  --color-teal-4: #57ecab;
+  --color-teal-5: #40dfa0;
+  --color-teal-6: #2dc991;
+  --color-teal-7: #1faa7b;
+  --color-teal-8: #14825e;
+  --color-teal-9: #0c543d;
+
+  /* cyan */
+  --color-cyan-0: #f0fcfa;
+  --color-cyan-1: #d1f5f0;
+  --color-cyan-2: #adede4;
+  --color-cyan-3: #83e4d7;
+  --color-cyan-4: #71d4c7;
+  --color-cyan-5: #68c2b6;
+  --color-cyan-6: #5dada3;
+  --color-cyan-7: #4f958c;
+  --color-cyan-8: #3f756e;
+  --color-cyan-9: #254541;
+
+  /* primary */
+  --color-primary-0: var(--color-indigo-0);
+  --color-primary-1: var(--color-indigo-1);
+  --color-primary-2: var(--color-indigo-2);
+  --color-primary-3: var(--color-indigo-3);
+  --color-primary-4: var(--color-indigo-4);
+  --color-primary-5: var(--color-indigo-5);
+  --color-primary-6: var(--color-indigo-6);
+  --color-primary-7: var(--color-indigo-7);
+  --color-primary-8: var(--color-indigo-8);
+  --color-primary-9: var(--color-indigo-9);
+}

@@ -1,0 +1,20 @@
+$common-margin = 8px
+$common-padding = 8px
+$common-border = 2px solid var(--color-gray-9)
+$common-shadow = 4px 4px 0px var(--color-shadow)
+$common-height = 40px
+
+$border-color = var(--color-gray-9)
+$colors = 'gray', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'yellow', 'lime', 'green', 'teal', 'cyan', 'primary', 'light'
+/* ---------------------------------- style --------------------------------- */
+
+card()
+    margin $common-margin
+    padding: $common-padding
+    border $common-border
+    box-shadow $common-shadow
+
+/* -------------------------------- FUNCTION -------------------------------- */
+get-color(name, level) {
+    var('--color-%s-%s' % (unquote(name) level))
+}

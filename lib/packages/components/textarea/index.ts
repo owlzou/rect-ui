@@ -1,0 +1,1 @@
+export {default as RTextarea } from './index.vue'

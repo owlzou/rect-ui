@@ -1,0 +1,1 @@
+export {default as RSwitch } from './index.vue'

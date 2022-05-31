@@ -1,0 +1,150 @@
+@import '../../css/variables.styl'
+$button-offset = 4px
+
+.r-button {
+    padding 8px 16px
+    font-size 14px
+    border $common-border
+    height 20px
+    cursor pointer
+    position relative
+    font-weight bold
+    display inline-flex
+    align-items center
+    white-space nowrap
+
+    &:not(.r-flat) {
+        box-shadow $button-offset $button-offset 0px var(--color-shadow)
+
+        &:active {
+            box-shadow none
+            left $button-offset
+            top $button-offset
+        }
+
+        &:disabled {
+            box-shadow none
+        }
+    }
+
+    /* 扁平 */
+    &.r-flat:hover {
+        border-width 6px
+        padding 4px 12px
+        border-style double
+
+        &.r-icon-btn {
+            padding 4px
+        }
+    }
+
+    &:disabled {
+        left $button-offset
+        top $button-offset
+
+        &:not(.r-text) {
+            color var(--color-gray-9) !important
+            background var(--color-gray-3) !important
+            border-color var(--color-gray-6) !important
+        }
+
+        &.r-text {
+            color var(--color-gray-6) !important
+
+            &:hover {
+                background transparent !important
+            }
+        }
+
+        &:active, &:hover {
+            background @background
+            cursor not-allowed
+        }
+    }
+
+    /* * 只有图标 */
+    &.r-icon-btn {
+        padding 8px
+
+        .r-button__icon {
+            margin 0
+        }
+    }
+
+    /* 按钮内的图标 */
+    &__icon {
+        margin-right 4px
+        height 20px
+        width @height
+
+        svg {
+            width 100%
+            height 100%
+        }
+    }
+
+    for $color in $colors {
+        &.r-color-{$color} {
+            &.r-normal {
+                color get-color($color, 9)
+                border-color @color
+                background-color get-color($color, 2)
+
+                &:hover {
+                    background-color get-color($color, 1)
+                }
+
+                &:active {
+                    background-color get-color($color, 5)
+                }
+            }
+
+            &.r-primary {
+                color #fff
+                background get-color($color, 6)
+                border-color get-color($color, 9)
+
+                &:hover {
+                    background get-color($color, 4)
+                }
+
+                &:active {
+                    background get-color($color, 7)
+                }
+            }
+
+            &.r-outline {
+                color get-color($color, 7)
+                border-color @color
+                background transparent
+
+                &:hover {
+                    // border none !important
+                    color #fff
+                    background get-color($color, 7)
+                }
+
+                &:active {
+                    color #fff
+                    background get-color($color, 8)
+                    border-color @background
+                }
+            }
+
+            &.r-text {
+                color get-color($color, 7)
+                border-color transparent
+                background transparent
+
+                &:hover {
+                    color get-color($color, 6)
+                    background get-color($color, 1)
+                }
+
+                &:active {
+                    color get-color($color, 8)
+                }
+            }
+        }
+    }
+}

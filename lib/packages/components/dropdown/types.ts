@@ -1,0 +1,1 @@
+export type IDropdownTrigger = "hover" | "click"

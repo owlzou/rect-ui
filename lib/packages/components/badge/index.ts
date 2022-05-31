@@ -1,0 +1,1 @@
+export {default as RBadge } from './index.vue'

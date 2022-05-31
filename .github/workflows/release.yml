@@ -1,0 +1,21 @@
+# 推送 Tag 时编译并 Release
+on:
+  push:
+    tags:
+      - v*.*.*
+name: Release
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout & Install node
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Build
+      - run: npm run build
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: rect-ui-*.*.*.tgz

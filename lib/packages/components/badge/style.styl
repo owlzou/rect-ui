@@ -1,0 +1,41 @@
+@import '../../css/variables.styl'
+
+.r-badge {
+    display inline-block
+    position relative
+    padding 0 4px
+
+    &__label {
+        display block
+        padding 1px 4px
+        font-size 12px
+    }
+
+    &__empty {
+        display block
+        min-width 8px
+        min-height @min-width
+    }
+
+    for $color in $colors {
+        .r-badge__label, .r-badge__empty {
+            &.r-color-{$color} {
+                color #fff
+                background get-color($color, 5)
+            }
+
+            &.r-color-{$color}.r-outline {
+                color get-color($color, 7)
+                background transparent
+                border 1px solid get-color($color, 7)
+            }
+        }
+    }
+}
+
+.r-attach {
+    position absolute
+    top 0
+    right 0
+    translate 50% -50%
+}

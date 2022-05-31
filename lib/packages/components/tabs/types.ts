@@ -1,0 +1,1 @@
+export type ITabStyle = "card"|"label"

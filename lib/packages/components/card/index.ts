@@ -1,0 +1,1 @@
+export {default as RCard } from './index.vue'

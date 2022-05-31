@@ -1,0 +1,10 @@
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
+
+# 忽略自动生成的文件
+components/*
+
+!.gitkeep

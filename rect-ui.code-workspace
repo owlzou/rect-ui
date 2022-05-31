@@ -1,0 +1,65 @@
+{
+  "folders": [
+    {
+      "path": "docs"
+    },
+    {
+      "path": "lib"
+    }
+  ],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "lib"
+  },
+  "tasks": {
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Doc: docgen",
+        "type": "shell",
+        "command": "yarn docs:gen",
+        "options": {
+          "cwd": "${workspaceFolder}/../docs"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Doc: dev",
+        "type": "shell",
+        "command": "yarn docs:dev",
+        "options": {
+          "cwd": "${workspaceFolder}/../docs"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Lib: Readme helper",
+        "type": "shell",
+        "command": "node utils/readme-helper.js ${fileDirname}",
+        "options": {
+          "cwd": "${workspaceFolder}/../lib"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Lib: Gen Index",
+        "type": "shell",
+        "command": "node utils/genIndex2.js",
+        "options": {
+          "cwd": "${workspaceFolder}/../lib"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Lib: Build",
+        "type": "shell",
+        "command": "yarn build",
+        "options": {
+          "cwd": "${workspaceFolder}/../lib"
+        },
+        "problemMatcher": []
+      }
+    ]
+  }
+}

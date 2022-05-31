@@ -1,0 +1,1 @@
+export type IButtonType = "normal" | "primary" | "outline" | "text"

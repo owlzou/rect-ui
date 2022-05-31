@@ -1,0 +1,1 @@
+export {default as RInput } from './index.vue'

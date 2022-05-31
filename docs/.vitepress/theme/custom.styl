@@ -1,0 +1,69 @@
+/* 恢复原主题排版 */
+* {
+    box-sizing border-box
+}
+
+/* clear theme */
+[class^='r-'] {
+    h1, h2, h3, h4, h5, h6 {
+        all revert
+    }
+}
+
+.demo {
+    margin 16px
+    padding 16px
+    border 2px solid var(--color-gray-9)
+    box-shadow 4px 4px 0px var(--color-shadow)
+
+    *, ::before, ::after {
+        box-sizing content-box !important
+    }
+}
+
+.showcase {
+    *, ::before, ::after {
+        box-sizing content-box !important
+    }
+}
+
+.demo-grid {
+    .r-row {
+        margin-bottom 8px
+        background-color var(--color-gray-1)
+    }
+}
+
+.demo-button {
+    .r-row {
+        margin-bottom 8px
+    }
+}
+
+.demo-block {
+    height 40px
+    width 100%
+    text-align center
+    line-height 40px
+
+    &:nth-of-type(2n) {
+        background-color var(--color-primary-4)
+    }
+
+    &:nth-of-type(2n+1) {
+        background-color var(--color-primary-2)
+    }
+}
+
+.color-group {
+    display flex
+    flex-wrap wrap
+    margin-bottom 16px
+}
+
+.color-box {
+    width 100px
+    height 50px
+    margin 4px
+    padding 4px
+}

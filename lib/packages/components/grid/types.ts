@@ -1,0 +1,2 @@
+export type IJustifyContent = "center" | "start" | "end" | "flex-start" | "flex-end" | "left" | "right" | "baseline" | "space-between" | "space-around" | "space-evenly" | "stretch" | "inherit" | "initial" | "unset"
+export type IAlignItems = 'normal' | 'stretch' | 'center' | 'start' | 'end' | 'flex-start' | 'flex-end' | 'self-start' | 'self-end' | 'baseline' | 'first baseline' | 'last baseline' | 'safe center' | 'unsafe center' | 'inherit' | 'initial' | 'unset'

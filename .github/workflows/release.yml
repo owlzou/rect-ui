@@ -1,15 +1,16 @@
-# 推送 Tag 时编译并 Release
 on:
   push:
     tags:
       - v*.*.*
-name: Release
+      
 jobs:
   build:
     runs-on: ubuntu-latest
+    name: Release
     steps:
-      - name: Checkout & Install node
+      - name: Checkout
       - uses: actions/checkout@v3
+      - name: Setup node
       - uses: actions/setup-node@v3
         with:
           node-version: 16

@@ -10,19 +10,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Change Directory
-        run: |
-          cd lib
-          ls
       - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 16
       - name: Build
         run: |
+          cd lib
           npm install
           npm run build
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: ./rect-ui-*.*.*.tgz
+          files: lib/rect-ui-*.*.*.tgz

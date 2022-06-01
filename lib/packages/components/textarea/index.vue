@@ -7,10 +7,17 @@
     :readonly="readonly"
     :rows="rows"
     :cols="cols"
+    ref="inputRef"
   />
 </template>
 <script lang="ts">
-import { computed, defineComponent, PropType, WritableComputedRef } from "vue";
+import {
+  computed,
+  defineComponent,
+  PropType,
+  ref,
+  WritableComputedRef,
+} from "vue";
 /**
  * @displayName Textarea 文本框
  */
@@ -31,12 +38,58 @@ export default defineComponent({
     /** 是否只读 */
     readonly: { type: Boolean, default: false },
     /** 可见行数 */
-    rows: { type: Number },
+    rows: { type: Number, default: 5 },
     /** 可见列数 */
-    cols: { type: Number },
+    cols: { type: Number, default: 20 },
   },
-  emits: ["update:modelValue"],
+  emits: {
+    "update:modelValue": null,
+    /**
+     *  获得焦点时触发
+     *
+     *  @property {Event} event Event
+     * */
+    focus: (e: Event) => true,
+    /**
+     *  失去焦点时触发
+     *
+     *  @property {Event} event Event
+     * */
+    blur: (e: Event) => true,
+    /**
+     * 失去焦点并且内容改变触发
+     *
+     * @property {string | number } value 新的值
+     * */
+    change: (e: string | number) => true,
+    /**
+     * 输入时，内容改变则触发
+     *
+     *  @property {string | number} value 新的值
+     * */
+    input: (e: string | number) => true,
+    /**
+     * 利用 IME 开始输入时，[参见](https://developer.mozilla.org/zh-CN/docs/web/api/element/compositionstart_event)。
+     *
+     * @property {CompositionEvent} event Event
+     */
+    compositionstart: (e: CompositionEvent) => true,
+    /**
+     * 利用 IME 输入完毕时（选字上屏后），[参见](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/compositionend_event)。
+     *
+     * @property {CompositionEvent} event Event
+     */
+    compositionend: (e: CompositionEvent) => true,
+    /**
+     * 利用 IME 输入更新时，[参见](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/compositionupdate_event)。
+     *
+     * @property {CompositionEvent} event Event
+     */
+    compositionupdate: (e: CompositionEvent) => true,
+  },
   setup(props, { emit }) {
+    const inputRef = ref<InstanceType<typeof HTMLTextAreaElement>>();
+
     const model: WritableComputedRef<string | number | string[]> = computed({
       get() {
         return props.modelValue;
@@ -45,7 +98,76 @@ export default defineComponent({
         emit("update:modelValue", val);
       },
     });
-    return { model };
+
+    const onInput = (e: InputEvent) => {
+      emit("input", (e.target as HTMLTextAreaElement).value);
+    };
+
+    const onFocus = (e: Event) => {
+      emit("focus", e);
+    };
+
+    const onBlur = (e: Event) => {
+      emit("blur", e);
+    };
+
+    const onChange = (e: Event) => {
+      emit("change", (e.target as HTMLTextAreaElement).value);
+    };
+
+    const onCompositionStart = (e: CompositionEvent) => {
+      emit("compositionstart", e);
+    };
+
+    const onCompositionEnd = (e: CompositionEvent) => {
+      emit("compositionend", e);
+    };
+
+    const onCompositionUpdate = (e: CompositionEvent) => {
+      emit("compositionupdate", e);
+    };
+
+    /**
+     * 获取焦点
+     *
+     * @public
+     */
+    function focus() {
+      inputRef.value?.focus();
+    }
+
+    /**
+     * 失去焦点
+     *
+     * @public
+     */
+    function blur() {
+      inputRef.value?.blur();
+    }
+
+    /**
+     * 全选文字内容
+     *
+     * @public
+     */
+    function select() {
+      inputRef.value?.select();
+    }
+
+    return {
+      inputRef,
+      model,
+      onInput,
+      onFocus,
+      onBlur,
+      onChange,
+      onCompositionStart,
+      onCompositionEnd,
+      onCompositionUpdate,
+      focus,
+      blur,
+      select,
+    };
   },
 });
 </script>

@@ -30,9 +30,27 @@
   </table>
 </template>
 <script lang="tsx">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, h, PropType } from "vue";
 import { ITableHeader, ITableData } from "./types";
-import RTableCell from "./table-cell"
+
+interface ITableCellProp {
+  template: (
+    value: string | number,
+    index: number,
+    row: ITableData
+  ) => JSX.Element;
+  val: string | number;
+  idx: number;
+  row: ITableData;
+}
+
+const RTableCell = (props: ITableCellProp) => {
+  if (props.template) {
+    return h("td", props.template(props.val, props.idx, props.row));
+  } else {
+    return h("td", props.val);
+  }
+};
 
 /**
  * @displayName 表格 Table

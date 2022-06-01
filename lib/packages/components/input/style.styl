@@ -1,0 +1,70 @@
+@import '../../css/variables.styl'
+
+.r-input {
+    position relative
+    border $common-border
+    padding $common-padding
+    display inline-flex
+    align-items center
+    height 20px
+    transition 0.3s
+
+    input {
+        padding 0
+        margin 0
+        border none
+        height 20px
+        flex-grow 1
+        font-size 16px
+        width 100%
+
+        &:focus {
+            border none
+            outline none
+        }
+
+        &:disabled {
+            background var(--color-gray-2)
+        }
+    }
+
+    &.r-focus {
+        outline none
+        border-color var(--color-primary-7)
+
+        &:not(.r-flat) {
+            box-shadow $common-shadow
+        }
+    }
+
+    &.r-disabled {
+        background var(--color-gray-2)
+    }
+
+    &.r-flat {
+        border-top-color transparent
+        border-right none
+        border-left none
+
+        &:focus {
+            box-shadow none
+        }
+    }
+}
+
+/* ---------------------------------- 图标居中 ---------------------------------- */
+.r-input__before, .r-input__after {
+    flex-shrink:0;
+    .lucide {
+        vertical-align middle
+    }
+}
+
+/* ----------------------------------- 插槽 ----------------------------------- */
+.r-input__before {
+    margin-right 8px
+}
+
+.r-input__after {
+    margin-left 8px
+}

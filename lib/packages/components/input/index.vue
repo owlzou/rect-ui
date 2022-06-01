@@ -1,7 +1,7 @@
 <template>
   <span :class="classes">
     <span class="r-input__before" v-if="$slots.before">
-      <!-- @slot 输入框前图标插槽 -->
+      <!-- @slot 输入框前的插槽 -->
       <slot name="before" />
     </span>
     <input
@@ -12,11 +12,16 @@
       :type="password ? `password` : null"
       :autocomplete="autocomplete ? `on` : null"
       @input="onInput"
-      @focus="onFocus(true)"
-      @blur="onFocus(false)"
+      @focus="onFocus"
+      @blur="onBlur"
+      @change="onChange"
+      @compositionstart="onCompositionStart"
+      @compositionend="onCompositionEnd"
+      @compositionupdate="onCompositionUpdate"
+      ref="inputRef"
     />
     <span class="r-input__after" v-if="$slots.after">
-      <!-- @slot 输入框后图标插槽 -->
+      <!-- @slot 输入框后的插槽 -->
       <slot name="after" />
     </span>
   </span>
@@ -45,9 +50,54 @@ export default defineComponent({
     /** 扁平模式 */
     flat: { type: Boolean, default: false },
   },
-  emits: ["update:modelValue"],
+  emits: {
+    "update:modelValue": null,
+    /**
+     *  获得焦点时触发
+     *
+     *  @property {Event} event Event
+     * */
+    focus: (event: Event) => true,
+    /**
+     *  失去焦点时触发
+     *
+     *  @property {Event} event Event
+     * */
+    blur: (event: Event) => true,
+    /**
+     * 失去焦点并且内容改变触发
+     *
+     * @property { string | number } value 新的值
+     * */
+    change: (value: string | number) => true,
+    /**
+     * 输入时，内容改变则触发
+     *
+     *  @property { string | number } value 新的值
+     * */
+    input: (value: string | number) => true,
+    /**
+     * 利用 IME 开始输入时，[参见](https://developer.mozilla.org/zh-CN/docs/web/api/element/compositionstart_event)。
+     *
+     * @property {CompositionEvent} event Event
+     */
+    compositionstart: (event: CompositionEvent) => true,
+    /**
+     * 利用 IME 输入完毕时（选字上屏后），[参见](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/compositionend_event)。
+     *
+     * @property {CompositionEvent} event Event
+     */
+    compositionend: (event: CompositionEvent) => true,
+    /**
+     * 利用 IME 输入更新时，[参见](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/compositionupdate_event)。
+     *
+     * @property {CompositionEvent} event Event
+     */
+    compositionupdate: (event: CompositionEvent) => true,
+  },
   setup(props, { emit, slots }) {
-    const focus = ref(false);
+    const isFocus = ref(false);
+    const inputRef = ref<InstanceType<typeof HTMLInputElement>>();
 
     const classes = computed(() => ({
       "r-input": true,
@@ -55,87 +105,86 @@ export default defineComponent({
       "r-slot-before": slots.before,
       "r-slot-after": slots.after,
       "r-disabled": props.disabled,
-      "r-focus": focus.value && !props.readonly,
+      "r-focus": isFocus.value && !props.readonly,
     }));
 
-    const onInput = (event: InputEvent) => {
-      emit("update:modelValue", (event.target as HTMLInputElement).value);
+    const onInput = (e: InputEvent) => {
+      emit("update:modelValue", (e.target as HTMLInputElement).value);
+      emit("input", (e.target as HTMLInputElement).value);
     };
 
-    const onFocus = (val) => (focus.value = val);
+    const onFocus = (e: Event) => {
+      isFocus.value = true;
+      emit("focus", e);
+    };
 
-    return { classes, onInput, onFocus };
+    const onBlur = (e: Event) => {
+      isFocus.value = false;
+      emit("blur", e);
+    };
+
+    const onChange = (e: Event) => {
+      emit("change", (e.target as HTMLInputElement).value);
+    };
+
+    const onCompositionStart = (e: CompositionEvent) => {
+      emit("compositionstart", e);
+    };
+
+    const onCompositionEnd = (e: CompositionEvent) => {
+      emit("compositionend", e);
+    };
+
+    const onCompositionUpdate = (e: CompositionEvent) => {
+      emit("compositionupdate", e);
+    };
+
+    /**
+     * 获取焦点
+     *
+     * @public
+     */
+    function focus() {
+      isFocus.value = true;
+      inputRef.value?.focus();
+    }
+
+    /**
+     * 失去焦点
+     *
+     * @public
+     */
+    function blur() {
+      isFocus.value = false;
+      inputRef.value?.blur();
+    }
+
+    /**
+     * 全选文字内容
+     *
+     * @public
+     */
+    function select() {
+      inputRef.value?.select();
+    }
+
+    return {
+      inputRef,
+      classes,
+      onInput,
+      onFocus,
+      onBlur,
+      onChange,
+      onCompositionStart,
+      onCompositionEnd,
+      onCompositionUpdate,
+      focus,
+      blur,
+      select,
+    };
   },
 });
 </script>
 <style lang="stylus">
-@import '../../css/variables.styl'
-
-.r-input {
-    position relative
-    border $common-border
-    padding $common-padding
-    display inline-flex
-    align-items center
-    height 20px
-    transition 0.3s
-
-    input {
-        padding 0
-        margin 0
-        border none
-        height 20px
-        flex-grow 1
-        font-size 16px
-        width 100%
-
-        &:focus {
-            border none
-            outline none
-        }
-
-        &:disabled {
-            background var(--color-gray-2)
-        }
-    }
-
-    &.r-focus {
-        outline none
-        border-color var(--color-primary-7)
-
-        &:not(.r-flat) {
-            box-shadow $common-shadow
-        }
-    }
-
-    &.r-disabled {
-        background var(--color-gray-2)
-    }
-
-    &.r-flat {
-        border-top-color transparent
-        border-right none
-        border-left none
-
-        &:focus {
-            box-shadow none
-        }
-    }
-}
-
-/* * 图标居中 */
-.r-input__before, .r-input__after {
-    flex-shrink:0;
-    .lucide {
-        vertical-align middle
-    }
-}
-
-.r-input__before {
-    margin-right 8px
-}
-
-.r-input__after {
-    margin-left 8px
-}
+@import "./style.styl"
 </style>

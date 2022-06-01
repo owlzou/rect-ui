@@ -1,7 +1,8 @@
 import { test, expect } from "vitest";
 import { mount } from "@vue/test-utils";
 import { RTable, RButton } from "../..";
-import { ITableData, ITableHeader } from "../../../utils/types";
+import { ITableData, ITableHeader } from "../types";
+import { h } from "vue";
 
 const Component = {
   template: `<r-table :headers="headers" :data="data"></r-table>`,
@@ -12,7 +13,8 @@ const Component = {
       {
         key: "user",
         text: "用户名",
-        template: (val, _idx, _row) => <a href="#"> {val} </a>,
+        template: (val, _idx, _row) =>
+          h("a", { class: "render-class", text: val }),
       },
       { key: "lastLoginTime", text: "最后登录时间" },
       {
@@ -53,10 +55,22 @@ test("Display data", () => {
   expect(tr[1].findAll("td")[1].text(), "内容文字").toEqual("竺清晖");
 });
 
-test("Custom column", () => {
+test("Custom column: TSX", () => {
   const wrapper = mount(Component);
 
-  const button = wrapper.findAll("tbody tr")[0].findAll("td")[3].find(".r-button");
+  const button = wrapper
+    .findAll("tbody tr")[0]
+    .findAll("td")[3]
+    .find(".r-button");
   expect(button, "渲染出按钮").toBeTruthy();
   expect(button.text(), "渲染出按钮文字").toEqual("编辑");
+});
+
+test("Custom colum: Render function", () => {
+  const wrapper = mount(Component);
+
+  const a = wrapper.find("tbody tr").findAll("td")[1].find("a");
+  expect(a.exists()).toBeTruthy();
+  expect(a.classes()).toEqual(["render-class"]);
+  expect(a.text()).toEqual("竺清晖");
 });

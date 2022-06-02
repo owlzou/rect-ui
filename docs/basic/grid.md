@@ -1,8 +1,8 @@
-## 栅格 Grid
+# 栅格 Grid
 
 传统的、在大部分 UI 框架里都可以见到的行列设计。
 
-### 基础 Basic
+## 基础 Basic
 
 `span` 控制宽度，取值从 1 到 24。
 
@@ -13,6 +13,8 @@
 ::: details 显示代码
 <<< @/../lib/packages/components/grid/demo/basic.vue
 :::
+
+## 对齐
 
 ### Justify
 
@@ -34,7 +36,7 @@
 <<< @/../lib/packages/components/grid/demo/align.vue
 :::
 
-### 断点 BreakPoint
+## 断点 BreakPoint
 
 断点分为 `xs`,`sm`,`md`,`lg`,`xl`
 

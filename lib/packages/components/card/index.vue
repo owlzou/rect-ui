@@ -17,7 +17,6 @@
 import { defineComponent, PropType } from "vue";
 import { IColor } from "../../utils/types";
 /**
- * 卡片
  * @displayName 卡片 Card
  */
 export default defineComponent({

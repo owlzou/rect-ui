@@ -20,6 +20,7 @@ export default defineComponent({
     max: { type: Number, default: 100 },
     /** @model */
     modelValue: { type: Number, default: 0 },
+    /** 隐藏滑块后的数值显示 */
     hidevalue: { type: Boolean, default: false },
   },
   setup(props, { emit }) {

@@ -1,4 +1,4 @@
-## 色彩 Color
+# 色彩 Color
 
 均为 CSS 变量，方便覆盖（形为`var(--color-blue-0)`，`primary`默认是`indigo`）。
 

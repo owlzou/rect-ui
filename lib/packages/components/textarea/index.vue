@@ -19,7 +19,7 @@ import {
   WritableComputedRef,
 } from "vue";
 /**
- * @displayName Textarea 文本框
+ * @displayName 文本框 Textarea
  */
 export default defineComponent({
   name: "r-textarea",

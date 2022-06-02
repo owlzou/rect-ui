@@ -12,7 +12,7 @@ function getSidebar() {
     ["卡片", "card"],
     ["多选框", "checkbox"],
     ["下拉菜单", "dropdown"],
-    ["分组", "fieldset"],
+    ["字段集", "fieldset"],
     ["输入框", "input"],
     ["对话框", "modal"],
     ["单选框", "radio"],
@@ -20,18 +20,19 @@ function getSidebar() {
     ["滑块", "slider"],
     ["开关", "switch"],
     ["标签页", "tabs"],
-    ["表格","table"],
+    ["表格", "table"],
     ["文本框", "textarea"],
   ];
 
   menuComponents.sort((a, b) => a[1] - b[1]);
 
-  // 在文件夹里的index文件，不要忘记链接最后的'/'
+  // 在文件夹里的 index 文件，不要忘记链接最后的'/'
   return [
     {
       text: "基础 Basic",
       children: [
         { text: "色彩 Color", link: "/basic/color.html" },
+        { text: "默认元素", link: "/basic/type.html" },
         { text: "图标 Icons", link: "/basic/icon.html" },
         { text: "栅格 Grid", link: "/basic/grid.html" },
       ],

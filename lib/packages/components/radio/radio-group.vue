@@ -6,7 +6,15 @@ import { defineComponent, PropType, watch } from "vue";
 /** @displayName 单选组 Radio Group */
 export default defineComponent({
   name: "r-radio-group",
-  emits: ["update:modelValue", "change"],
+  emits: {
+    "update:modelValue": null,
+    /**
+     * 当值变化的时候
+     *
+     * @property {Boolean} val 新的值
+     * */
+    change: (val: string | number) => true,
+  },
   props: {
     /** @model */
     modelValue: { type: [String, Number] as PropType<String | Number> },
@@ -14,7 +22,7 @@ export default defineComponent({
   setup(props, { emit }) {
     watch(
       () => props.modelValue,
-      (nv, _ov) => {
+      (nv: string | number, _ov) => {
         emit("change", nv);
       }
     );

@@ -14,10 +14,9 @@
   </label>
 </template>
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, PropType, computed } from "vue";
 import { getParent } from "../../utils/helpers";
 /**
- * 多选框。
  * @displayName 多选框 Checkcbox
  * @requires ./checkbox-group.vue
  */
@@ -36,6 +35,15 @@ export default defineComponent({
     /** inline 模式 */
     inline: { type: Boolean, defalut: false },
   },
+  emits: {
+    "update:modelValue": null,
+    /**
+     * 当值变化的时候
+     *
+     * @property {Boolean} val 新的值
+     * */
+    change: (val: boolean) => true,
+  },
   computed: {
     model: {
       get() {
@@ -51,20 +59,18 @@ export default defineComponent({
         }
       },
     },
-    classes() {
-      return {
-        "r-checkbox": true,
-        "r-inline": this.inline,
-      };
-    },
   },
-  emits: ["update:modelValue","change"],
-  setup(_, { emit }) {
+  setup(props, { emit }) {
+    const classes = computed(() => ({
+      "r-checkbox": true,
+      "r-inline": props.inline,
+    }));
+
     const onChange = (e: Event) => {
-      /** 当值变化的时候 */
       emit("change", (e.target as HTMLInputElement).checked);
     };
-    return { onChange };
+
+    return { classes, onChange };
   },
 });
 </script>

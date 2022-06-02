@@ -29,7 +29,10 @@ import { IColor } from "../../utils/types";
  */
 export default defineComponent({
   name: "r-modal",
-  emits: ["close"],
+  emits: {
+    /** 点击内置关闭按钮时发出 */
+    close: () => true,
+  },
   props: {
     /**
      * 对话框的主题色，详见 [色彩](/basic/color.html)。
